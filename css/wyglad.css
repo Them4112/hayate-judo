@@ -629,7 +629,7 @@ h3 {
 .tabela-cennika {
   width: 100%;
   border-collapse: collapse;
-  text-align: left;
+  text-align: center;
 }
 
 .tabela-cennika th, .tabela-cennika td {
@@ -645,6 +645,15 @@ h3 {
 }
 
 .tabela-cennika tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tabela-cennika tbody th {
+  color: #d1cdc4;
+  font-size: 13px;
+}
+
+.tabela-cennika tbody tr:last-child th {
   border-bottom: 0;
 }
 
@@ -727,6 +736,31 @@ h3 {
   margin: 22px 0 0;
   color: var(--color-text-muted);
   text-align: center;
+}
+
+.dane-przelewu {
+  margin-top: 18px;
+  padding: 24px 30px;
+  text-align: center;
+}
+
+.naglowek-przelewu {
+  margin-bottom: 8px;
+  font-size: 21px;
+}
+
+.opis-numeru-konta {
+  margin-bottom: 6px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.numer-konta {
+  margin-bottom: 0;
+  color: var(--color-gold-light);
+  font-size: clamp(17px, 2.5vw, 22px);
+  font-weight: 700;
+  letter-spacing: .06em;
 }
 
 .tabela-cennika td {
