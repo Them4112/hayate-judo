@@ -1,40 +1,37 @@
 <?php
 require_once __DIR__ . "/classes/post.php";
-
+require_once __DIR__ . "/functions/connectToDatabase.php";
+require_once __DIR__ . "/functions/getPostsFromAPI.php";
+require_once __DIR__ . "/functions/addPostsToDatabase.php";
+require_once __DIR__ . "/functions/getLogsFromDatabase.php";
 try {
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        getPostsFromAPI(9);
+        $ifFetchedFromAPI = getLogsFromDatabase();
+        if (!$ifFetchedFromAPI) {
+            echo "Fetchuje z API";
+            getPostsFromAPI(5);
+        } else {
+            echo "Fetchuje z bazy danych";
+            $posts = getPostsFromDatabase(5);
+            echo json_encode($posts);
+        }
     }
+} catch (PDOException $e) {
+    error_log("Bład bazy danych:" . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(["message" => "Błąd wewnętrzny serwera"]);
+    return;
 } catch (Exception $e) {
-    error_log($e);
-}
-
-function getPostsFromAPI($limit)
-{
-    $id = getenv("ACCOUNT_ID");
-    $accessToken = getenv("ACCESS_TOKEN");
-    if (!$id || !$accessToken) {
-        throw new Exception("Credentials not loaded");
-    }
-    $query = curl_init("https://graph.instagram.com/v26.0/$id/media?fields=id,caption,media_type,media_url,permalink,timestamp&access_token=$accessToken&limit=$limit");
-    curl_setopt($query, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($query);
-    if (!$response) {
+    if (http_response_code() < 500) {
+        echo json_encode(["message" => $e->getMessage()]);
+    } else {
+        error_log("Błąd wewnętrzny serwera:" . $e->getMessage());
         http_response_code(500);
-        throw new Exception("Request error");
-    }
-    $postList = json_decode($response, true);
-    $limitedPostList = [];
-    foreach ($postList["data"] as $post) {
-        $limitedPostList[] = new Post($post["caption"], $post["permalink"], $post["media_url"], "Hayate Judo", $post["media_type"], $post["timestamp"]);
-    }
-    if (count($limitedPostList) > 0) {
-        echo json_encode($limitedPostList);
+        echo json_encode(["message" => "Błąd wewnętrzny serwera"]);
     }
     return;
 }
-function getPostsFromDatabase($limit)
-{
 
-}
+
+
 ?>
