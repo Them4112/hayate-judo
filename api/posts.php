@@ -4,7 +4,15 @@ require_once __DIR__ . "/functions/connectToDatabase.php";
 require_once __DIR__ . "/functions/getPostsFromAPI.php";
 require_once __DIR__ . "/functions/addPostsToDatabase.php";
 require_once __DIR__ . "/functions/getLogsFromDatabase.php";
+require_once __DIR__ . "/classes/MyException.php";
+require_once __DIR__ . "/functions/checkIfRefreshTokenShouldBeRefreshed.php";
+require_once __DIR__ . "/functions/generateNewAccessToken.php";
+
 try {
+    $shouldBeRefreshed = checkIfRefreshTokenShouldBeRefreshed();
+    if ($shouldBeRefreshed) {
+        generateNewAccessToken();
+    }
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $ifFetchedFromAPI = getLogsFromDatabase();
         if (!$ifFetchedFromAPI) {
@@ -16,6 +24,9 @@ try {
             echo json_encode($posts);
         }
     }
+} catch (MyException $e) {
+    http_response_code($e->getCode());
+    echo json_encode(["message" => $e->getMessage()]);
 } catch (PDOException $e) {
     error_log("Bład bazy danych:" . $e->getMessage());
     http_response_code(500);
