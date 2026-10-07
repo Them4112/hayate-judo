@@ -29,7 +29,7 @@ const pageTitles = {
 const pageDescriptions = {
   home: "Treningi judo dla dzieci, młodzieży i dorosłych. Poznaj Hayate Judo, sprawdź grafik zajęć i dołącz do klubu.",
   about:
-    "Poznaj Hayate Judo, naszą misję, historię oraz wartości: szacunek, technikę i samodoskonalenie.",
+    "Poznaj Hayate Judo i trenera Michała Bartusika, mistrza Polski seniorów w judo. Sprawdź naszą misję i wartości: szacunek, technikę i samodoskonalenie.",
   news: "Aktualności, wydarzenia i relacje z treningów Hayate Judo. Zobacz najnowsze wpisy klubu.",
   schedule:
     "Sprawdź tygodniowy grafik treningów judo dla dzieci, młodzieży i dorosłych w Hayate Judo.",

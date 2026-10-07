@@ -32,6 +32,44 @@ export function renderAbout() {
   aboutGrid.appendChild(feature);
   aboutGrid.appendChild(stack);
 
+  const trainer = createElement('article', 'profil-trenera szklany-panel');
+  const trainerImage = createElement('img', '', '');
+  trainerImage.src = 'assets/trener.png';
+  trainerImage.alt = 'Michał Bartusik, trener judo';
+  trainerImage.loading = 'lazy';
+  trainer.appendChild(trainerImage);
+
+  const trainerDetails = createElement('div', 'opis-trenera');
+  trainerDetails.appendChild(createElement('span', 'etykieta-sekcji', 'Poznaj trenera'));
+  trainerDetails.appendChild(createElement('h2', '', 'Michał Bartusik'));
+  trainerDetails.appendChild(createElement(
+    'p',
+    '',
+    'Trenerem Hayate Judo jest Michał Bartusik – judoka i posiadacz 1. dana. Jako zawodnik zdobył tytuły mistrza Polski seniorów: w kategorii -66 kg w 2013 i 2015 roku oraz w kategorii -73 kg w 2017 roku.',
+  ));
+  trainerDetails.appendChild(createElement(
+    'p',
+    '',
+    'Michał prowadził klub judo Fight Fun w Niechobrzu, działający od 2019 roku. Fight-Fun przeszedł rebranding i działa dziś pod nazwą Hayate Judo.',
+  ));
+
+  const sources = createElement('p', 'zrodla-trenera');
+  sources.appendChild(document.createTextNode('Źródła: '));
+  [
+    ['Profil zawodnika', 'http://www.judo-rzeszow.pl/zawodnicy/michal_bartusik.php'],
+    ['Wywiad', 'https://nowiny24.pl/michal-bartusik-judo-to-wspaniala-przygoda-ktora-uksztaltowala-moje-zycie-rozmowa/ar/c2-16985819'],
+    ['Rekord zawodniczy', 'https://www.judoinside.com/judoka/76712/Michal_Bartusik/judo-career'],
+  ].forEach(([label, href], index) => {
+    if (index > 0) sources.appendChild(document.createTextNode(' · '));
+    const link = createElement('a', '', label);
+    link.href = href;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    sources.appendChild(link);
+  });
+  trainerDetails.appendChild(sources);
+  trainer.appendChild(trainerDetails);
+
   const intro = createElement('div', 'naglowek-sekcji');
   const introText = createElement('div');
   introText.appendChild(createElement('span', 'etykieta-sekcji', 'Trzy zasady, jeden kierunek'));
@@ -48,6 +86,7 @@ export function renderAbout() {
   });
 
   section.appendChild(aboutGrid);
+  section.appendChild(trainer);
   section.appendChild(intro);
   section.appendChild(valueGrid);
   return section;

@@ -482,6 +482,45 @@ h3 {
   min-height: 150px;
 }
 
+.profil-trenera {
+  display: grid;
+  grid-template-columns: minmax(220px, .65fr) minmax(0, 1.35fr);
+  gap: 30px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 30px;
+}
+
+.profil-trenera > img {
+  display: block;
+  width: 100%;
+  min-height: 300px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, .04);
+  color: var(--color-text-muted);
+  object-fit: cover;
+}
+
+.opis-trenera h2 {
+  margin: 14px 0;
+  font-size: clamp(28px, 4vw, 38px);
+}
+
+.opis-trenera > p {
+  color: var(--color-text-muted);
+}
+
+.opis-trenera .zrodla-trenera {
+  margin: 20px 0 0;
+  font-size: 12px;
+}
+
+.zrodla-trenera a {
+  color: var(--color-gold-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .siatka-wartosci {
   margin-top: 16px;
 }
@@ -1257,6 +1296,17 @@ body.stan-gotowy .logo-naglowka .nazwa-marki {
   .misja-klubu {
     min-height: 280px;
     padding: 25px;
+  }
+
+  .profil-trenera {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 22px;
+  }
+
+  .profil-trenera > img {
+    min-height: 220px;
+    max-height: 360px;
   }
 
   .siatka-nowosci {
