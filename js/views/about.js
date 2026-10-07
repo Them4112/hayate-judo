@@ -45,8 +45,7 @@ export function renderAbout() {
   trainerDetails.appendChild(createElement(
     'p',
     '',
-    'Trenerem Hayate Judo jest Michał Bartusik – judoka i posiadacz 1. dana. Jako zawodnik zdobył tytuły mistrza Polski seniorów: w kategorii -66 kg w 2013 i 2015 roku oraz w kategorii -73 kg w 2017 roku.',
-  ));
+    "Trenerem Hayate Judo jest Michał Bartusik – judoka i posiadacz 1. dana. W swojej karierze zawodniczej zdobył trzykrotnie tytuł mistrza Polski seniorów: w kategorii -66 kg w 2013 i 2015 roku oraz w kategorii -73 kg w 2017 roku. Jest również brązowym medalistą Pucharu Świata w judo w Tallinie w kategorii -66 kg."  ));
   trainerDetails.appendChild(createElement(
     'p',
     '',
