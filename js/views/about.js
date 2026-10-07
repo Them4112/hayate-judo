@@ -56,7 +56,6 @@ export function renderAbout() {
   const sources = createElement('p', 'zrodla-trenera');
   sources.appendChild(document.createTextNode('Źródła: '));
   [
-    ['Profil zawodnika', 'http://www.judo-rzeszow.pl/zawodnicy/michal_bartusik.php'],
     ['Wywiad', 'https://nowiny24.pl/michal-bartusik-judo-to-wspaniala-przygoda-ktora-uksztaltowala-moje-zycie-rozmowa/ar/c2-16985819'],
     ['Rekord zawodniczy', 'https://www.judoinside.com/judoka/76712/Michal_Bartusik/judo-career'],
   ].forEach(([label, href], index) => {
